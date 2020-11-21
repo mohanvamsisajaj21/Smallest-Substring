@@ -5,28 +5,24 @@ Created on Sat Nov 21 19:54:54 2020
 @author: mohan
 """
 
-def max_distinct(s, n): 
-	arr = [0]*256
-	for i in range(n): 
-		arr[ord(s[i])]+=1
-	md = 0
-	for i in range(256): 
-		if(arr[i]>0): 
-			md+=1	
-	return md
+def max_distinct(s, n): #Finding the number of distinct characters in a string
+    arr = [] #An Array which contains all the unique elements of the given string
+    for i in s:
+        if(i not in arr):
+            arr.append(i)
+    return len(arr)
 
-def smallest_sub(s): 
+def smallest_sub(s): #Finding length of smallest substring with distinct characters
 	n = len(s)
 	md = max_distinct(s, n) 
 	min = n
 	for i in range(n): 
-		for j in range(i, n): 
+		for j in range(i, n): #Checking all the substrings of the string
 			x = s[i:j] 
 			l = len(x) 
 			sub_dis = max_distinct(x, l)
-			if(l<min and md==sub_dis): 
+			if(l<min and md==sub_dis): #Checking if the given substring satisfies our conditions
 				min = l 
-
 	return min
  
 s = str(input())
